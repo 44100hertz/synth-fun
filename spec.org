@@ -1,0 +1,49 @@
+* Playback
+ - Sample rate and bit depth specified
+ - no resampler! Anything that needs resampling uses a filter.
+ - raw PCM file out for now...SDL output later
+* FM Synth
+** Wave I/O
+ - waves.c has waveform generation functions.
+ - waveforms start at 0 and end at 2*pi
+ - the data waves return goes from 0 to 2pi, and needs to be quantized to be outputted
+ - arbitrary number of operators, input/output goes where it does
+** Envelope
+ - The envelope is used to modify the volume of a carrier in order to get a different wave from the modulator
+* PWM
+ - PWM is achieved by linking the wavetable synth with an FM synth
+* Filters / Subtractive Synth
+ - Up to buffer length
+ - Used as cheap resampler
+* Instruments
+ - Pseudo instruments from old consoles are grabbed to be used, defined accordingly
+* Musical properties
+** Sequencing
+ - BPM is defined
+** Envelope
+ - Envelopes can be applied to anything
+*** A few types:
+ - ASDR
+ - LFO
+ - Defined otherwise
+** Notes
+ - Notes are on-tune 440hz, can use rational scales or logarithmic
+* Songs
+** Song "coding"
+ - Made in a completely text-based format
+ - Parts of songs can be coded
+** Bultins
+ - Key signatures, various common music things
+ - Arpeggio commands
+
+* Version Goals
+** v0.1
+ - Able to get any correct FM synth output in general
+
+** v0.2
+ - Basic FM synth with envelopes
+ - Full GBC and NES synths
+
+** v1.0
+ - Able to write complete songs
+ - Able to play back audio
