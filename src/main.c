@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "FM-test.c"
+#include "fmtest.c"
 
 int main(int argc, char *argv[]) {
 	sineTest();
