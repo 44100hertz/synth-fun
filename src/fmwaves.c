@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <math.h>
 
-#define PI_2 2.0 * M_PI
-
 // TODO: make it easier to adjust functions' ranges
 //	e.g. is it useful to have a function with less range?
 
@@ -18,7 +16,7 @@ double absSineFM(double phase) {
 
 // Square wave. Aliased. Used as a carrier for C64 tones.
 double squareFM(double phase) {
-	if( fmod(phase, PI_2) >= M_PI ) {
+	if( phase >= M_PI ) {
 		return( 0 );
 	} else {
 		return( M_PI * 2.0 );
@@ -27,7 +25,7 @@ double squareFM(double phase) {
 
 // Triangle wave. Aliased.
 double triangleFM(double phase) {
-	if( fmod(phase, PI_2) >= M_PI ) {
+	if( phase >= M_PI ) {
 		return(phase * 2.0);
 	} else {
 		return(-2.0 * phase + M_PI);
