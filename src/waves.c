@@ -6,18 +6,18 @@
 
 // Give a sine wave.
 double sineFM(double phase) {
-	return sin( phase ) + M_PI;
+	return sin( phase ) * M_PI + M_PI;
 }
 
 // Absolute value of a sine wave.
 double absSineFM(double phase) {
-	return fabs( sin( phase ) * 2.0 );
+	return fabs( sin( phase ) * 2.0 * M_PI );
 }
 
 // Square wave. Aliased. Used as a carrier for C64 tones.
 double squareFM(double phase) {
 	if( phase % PI_2 >= M_PI ) {
-		return(0);
+		return( 0 );
 	} else {
 		return( M_PI * 2.0 );
 	}
