@@ -6,17 +6,17 @@
 //	e.g. is it useful to have a function with less range?
 
 // Give a sine wave.
-double sineWave(double phase) {
+double sineFM(double phase) {
 	return sin( phase ) + M_PI;
 }
 
 // Absolute value of a sine wave.
-double absSineWave(double phase) {
+double absSineFM(double phase) {
 	return fabs( sin( phase ) * 2.0 );
 }
 
 // Square wave. Aliased. Used as a carrier for C64 tones.
-double squareWave(double phase) {
+double squareFM(double phase) {
 	if( phase % PI_2 >= M_PI ) {
 		return(0);
 	} else {
@@ -25,7 +25,7 @@ double squareWave(double phase) {
 }
 
 // Triangle wave. Aliased.
-double triangleWave(double phase) {
+double triangleFM(double phase) {
 	if( phase % PI_2 >= M_PI ) {
 		return(phase * 2.0);
 	} else {
