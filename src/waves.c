@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <math.h>
-#include format.h
 
 // TODO: make it easier to adjust functions' ranges
 //	e.g. is it useful to have a function with less range?
