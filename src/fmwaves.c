@@ -23,8 +23,16 @@ double squareFM(double phase) {
 	}
 }
 
-// Triangle wave. Aliased.
 double triangleFM(double phase) {
+	if( phase < M_PI ) {
+		return(phase * 2.0);
+	} else {
+		return(phase * -2.0);
+	}
+}
+
+// Attempted triangle wave, ended up funny. Saved for whatever reason.
+double glitchTriFM(double phase) {
 	if( phase >= M_PI ) {
 		return(phase * 2.0);
 	} else {
