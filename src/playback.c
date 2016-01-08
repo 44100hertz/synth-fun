@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <math.h>
-#include "song.c"
-#include "waves.c"
-#include "quantize.c"
-#include "note.c"
+#include "song.h"
+#include "gen.h"
+#include "output.h"
+#include "note.h"
 
 int song(int sampleRate, songData song) {
 
@@ -23,10 +23,7 @@ int song(int sampleRate, songData song) {
 		
 		phase = fmod((timer * slope), 1.0) * 2 - 1;
 
-		byteOut = quantize( sineWave(phase) );
-		
-		putchar(byteOut);
-		putchar(byteOut >> 8);
+		output_printS16( gen_sine( phase ) );
 	}
 
 	return 0;

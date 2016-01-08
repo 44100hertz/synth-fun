@@ -2,12 +2,12 @@
 #include <math.h>
 
 // Sine wave.
-double sineWave(double phase) {
+double gen_sine(double phase) {
 	return sin( phase * M_PI );
 }
 
 // Square wave w/aliasing.
-double squareWave(double phase) {
+double gen_square(double phase) {
 	if( phase >= M_PI ) {
 		return( -1 );
 	} else {
@@ -16,7 +16,7 @@ double squareWave(double phase) {
 }
 
 // Triangle wave w/aliasing
-double triangleWave(double phase) {
+double gen_triangle(double phase) {
 	if( phase < 1.0 ) {
 		return(phase * 2.0);
 	} else {

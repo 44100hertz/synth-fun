@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-#include "song.c"
-#include "playback.c"
+#include "song.h"
+#include "playback.h"
 
 int main(int argc, char *argv[]) {
 
