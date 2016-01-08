@@ -1,9 +1,25 @@
-#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-struct songData makesong(int BPM, int tickRate, char *key) {
-	struct songData {
-		int BPM;
-		int tickRate;
-		char *key;
-	}
+char *makeScale(char root);
+
+typedef struct {
+	int BPM;
+	int tickRate;
+
+	int pattern;
+	
+	char *key;
+} songData;
+	
+songData makesong() {
+
+	static const char *scaleC = "cdefga";
+	
+	return (songData) {
+		.BPM = 80,
+			.tickRate = 24,
+			.key = strdup(scaleC),
+			.pattern = 0
+			};
 }

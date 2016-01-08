@@ -28,5 +28,7 @@ int song(int sampleRate, songData song) {
 		putchar(byteOut);
 		putchar(byteOut >> 8);
 	}
+
+	return 0;
 }
 

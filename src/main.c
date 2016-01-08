@@ -9,5 +9,5 @@ int main(int argc, char *argv[]) {
 
 	songData testSong = makesong();
 	
-	return song(freq, testSong);
+    song(freq, testSong);
 }
