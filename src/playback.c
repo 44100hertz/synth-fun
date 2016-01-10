@@ -23,7 +23,7 @@ int playback(int sampleRate, songData song)
 		phase += slope;
 		phase = fmod(phase, 1.0);
 
-		// outputs a sine wave f1or testing
+		// outputs a sine wave for testing
 		output_printS16(gen_sine(phase));
 	}
 
