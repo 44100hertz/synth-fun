@@ -1,1 +1,1 @@
-song(int sampleRate, songData song);
+int playback(int sampleRate, songData song);
