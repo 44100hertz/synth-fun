@@ -10,7 +10,7 @@
 
 double noteCalcChar(char noteNum)
 {
-	return noteCalc(noteNum - 'c' + 60.0);
+	return noteCalc(noteNum - 'c' + 60);
 }
 
 double noteCalc(double noteNum)

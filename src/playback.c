@@ -7,21 +7,25 @@
 
 int playback(int sampleRate, songData song)
 {
-	double phase = 0;
 	double slope;
-	int tick = -1;
+//	int tick = -1;
 	int offset = 0;
+
+	slope = noteCalcChar(song.key[offset % 7]) / sampleRate;
+
+//	fprintf(stderr, "%f, %f\n", slope, noteCalcChar(song.key[offset % 7]));
 	
-	for(long timer = 0; song.pattern != -1; timer++) {
-		int nextTick = timer / sampleRate / 60 * song.BPM * song.tickRate;	
-		if(nextTick > tick) {
-			slope = noteCalcChar(song.key[offset] / sampleRate);
-			++offset;
-		}
+	for(int timer = 0; timer < sampleRate * 20; timer++) {
+		
+//		int nextTick = timer / sampleRate / 60 * song.BPM * song.tickRate;	
+//		if(nextTick > tick) {
+
+//			++offset;
+//		}
 		// multiplies by slope, creating a sawtooth that loops at the intended period
-		phase = fmod((timer * slope), 1.0) * 2 - 1;
-		// outputs a sine wave for testing
-		output_printS16( gen_sine( phase ) );
+		double phase = fmod((timer * slope), 1.0);
+		// outputs a saw wave f1or testing
+		output_printS16(phase);
 	}
 
 	return 0;
