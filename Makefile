@@ -1,6 +1,7 @@
-./bin/song:
-default: 
-	gcc src/gen.c src/main.c src/note.c src/output.c src/playback.c src/song.c -lm -o bin/song
+default: bin/song
+
+./bin/song: src/*.c src/*.h
+	gcc src/*.c -lm -o bin/song
 
 clean:
 	rm -rf bin/song
