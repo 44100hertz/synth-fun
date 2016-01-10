@@ -6,7 +6,7 @@
 // Sine wave.
 double gen_sine(double phase)
 {
-	return sin( phase * TAU );
+	return sin( phase * TAU ) * 0.5 + 0.5;
 }
 
 // Square wave w/aliasing.

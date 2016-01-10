@@ -8,7 +8,7 @@ static
 int16_t output_quantize(double wave)
 {
 	return (int16_t)
-		(fmax( fmin( wave, 1.0 ), 0 ) * 0xffff - 0x7fff);
+		(fmax( fmin( wave, 1.0 ), 0 ) * 0xffff - 0x8000);
 }
 
 void output_printS16(double wave)
