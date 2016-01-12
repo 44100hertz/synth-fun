@@ -9,7 +9,6 @@ int playback(int sampleRate, songData song, FILE *path)
 {
 	int offset = 0;
 	double phase = 0;
-	double slope;
 
     enum { STATE_END, STATE_BEAT, STATE_TICK, STATE_GEN };
 	int state = STATE_BEAT;
@@ -28,12 +27,11 @@ int playback(int sampleRate, songData song, FILE *path)
 		case STATE_BEAT:
 		case STATE_TICK:
 			++offset;
-			slope = noteCalcChar(song.key[offset % 7]) / sampleRate;
+			double slope = noteCalcChar(song.key[offset % 7]) / sampleRate;
 			tick = nextTick;
 		case STATE_GEN:
 			phase += slope;
 			phase = fmod(phase, 1.0);
-			output_printS16(gen_sine(phase));
 			state = STATE_GEN;
 			++timer;
 		}
