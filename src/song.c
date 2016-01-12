@@ -6,7 +6,7 @@
 songData song_generate()
 {
 	static const char *scaleC = "cdefgab";
-	
+
 	return (songData) {
 		.BPM = 80,
 			.tickRate = 24,

@@ -5,7 +5,7 @@
 #include "output.h"
 #include "note.h"
 
-int playback(int sampleRate, songData song)
+int playback(int sampleRate, songData song, FILE *path)
 {
 	int offset = 0;
 	double phase = 0;
@@ -40,6 +40,8 @@ int playback(int sampleRate, songData song)
 
 		if(timer > sampleRate * 60 / song.BPM) state = STATE_END;
 		tick = nextTick;
+
+		output_fileS16(phase, path);
 	}
 
 	return 0;
