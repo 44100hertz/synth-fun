@@ -26,7 +26,7 @@ double gen_triangle(double phase)
 }
 
 // Used for envelopes
-double gen_1poly(double phase, double a, int power)
+double gen_1poly(double phase, double a, double power)
 {
-	return(pow(phase, power)*a);
+	return pow((1 - phase), power) * a;
 }
