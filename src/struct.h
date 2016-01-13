@@ -18,9 +18,9 @@ typedef struct {
 	uint8_t envState;
 	uint16_t readPos;
 	uint8_t readRate;
-	double env;
+	uint16_t env;
 	double envSlope;
-	double phase;
+	uint16_t phase;
     double slope;
 } channel[NUM_CHANNELS];
 

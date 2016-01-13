@@ -12,7 +12,7 @@ void tickUpdate(channel chan);
 int playback(int sampleRate, songData song, FILE *path)
 {
 	channel chan;
-	double envSlope = 1.0 / (double)song.tickRate;
+	double envSlope = 0xffff / (double)song.tickRate;
 	uint32_t tick = 0;
 	uint32_t nextTick = 0;
 	uint32_t timer = 0;
@@ -22,7 +22,7 @@ int playback(int sampleRate, songData song, FILE *path)
 		while(nextTick = tick) {
 			double mix = sampleUpdate(chan);
 			int nextTick = timer * song.BPM * song.tickRate / sampleRate / 60;
-			output_fileS16(mix, path);
+			output_fileS16(mix * 0xffff, path);
 		}
 	}
 	return 0;
