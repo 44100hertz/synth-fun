@@ -4,6 +4,7 @@
 #include "gen.h"
 #include "output.h"
 #include "note.h"
+#include "parse.h"
 
 int playback(int sampleRate, songData song, FILE *path)
 {
@@ -27,24 +28,20 @@ int playback(int sampleRate, songData song, FILE *path)
 
 		switch (state) {
 		case STATE_BEAT:
-			++offset;
 			env = 0;
 			double envslope = 1.0 / (double)song.tickRate;
 		case STATE_TICK:
-			slope = noteCalcChar(song.key[offset % 7]) / (double)sampleRate;
-			env += envslope;
 			tick = nextTick;
 		case STATE_GEN:
 			phase += slope;
 			phase = fmod(phase, 1.0);
 			state = STATE_GEN;
-			++timer;
 		}
 
-		if(timer > sampleRate * 60 * 16 / song.BPM) // HARD CODE
-			state = STATE_END;
+		++timer;
 		tick = nextTick;
-		output_fileS16(gen_sine(phase * gen_1poly(env, 1.0, 1.0)), path);
+		
+		output_fileS16(phase * env, path);
 	}
 
 	return 0;
