@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "song.h"
+#include "struct.h"
 #include "playback.h"
 
 int main(int argc, char *argv[])
@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 	int freq = 48000;
 	FILE *path;
 
-	songData testSong = song_generate();
+	songData testSong = struct_makeSong();
 //	song_print(testSong);
 
 	if(argc>1) {

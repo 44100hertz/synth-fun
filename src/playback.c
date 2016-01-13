@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <math.h>
-#include "song.h"
+#include "struct.h"
 #include "gen.h"
 #include "output.h"
 #include "note.h"
-#include "parse.h"
 
 int playback(int sampleRate, songData song, FILE *path)
 {
