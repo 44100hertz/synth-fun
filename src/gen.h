@@ -1,5 +1,5 @@
-double gen_sine(double phase);
-double gen_preciseSine(double phase);
-double gen_square(double phase);
-double gen_triangle(double phase);
-double gen_1poly(double phase, double a, double power);
+uint16_t gen_sine(uint16_t phase);
+uint16_t gen_preciseSine(uint16_t phase);
+uint16_t gen_square(uint16_t phase);
+uint16_t gen_triangle(uint16_t phase);
+uint16_t gen_1poly(uint16_t phase, double a, double power);
