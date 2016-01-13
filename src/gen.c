@@ -38,19 +38,18 @@ static const uint16_t sineLUT[256] =
         0xffba, 0xffcb, 0xffda, 0xffe6, 0xfff0, 0xfff7, 0xfffc, 0xffff
 };
 
-// Sine wave.
 double gen_sine(double phase)
 {
-        uint16_t intPosition = (phase * 256 * 4);
+        uint16_t intPosition = phase * 256 * 4;
         uint16_t posLUT = intPosition % 256;
 
         if(intPosition % 512 > 255)
-                posLUT = 256 - posLUT;
+                posLUT = 255 - posLUT;
 
-        if(intPosition > 512)
+        if(intPosition < 512)
                 return (sineLUT[posLUT] / (double)0xffff / 2.0) + 0.5;
         else
-                return (sineLUT[posLUT] / (double)0xffff / -2.0);
+                return (sineLUT[posLUT] / (double)0xffff / -2.0) + 0.5;
 }
 
 double gen_preciseSine(double phase)
