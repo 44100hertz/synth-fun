@@ -1,14 +1,28 @@
+#include <stdint.h>
+#define NUM_CHANNELS 8
+#define NUM_INSTRUMENTS 8
+enum { KEY_STOP, KEY_ON, KEY_OFF  };
+
 typedef struct {
-	int BPM;
-	int tickRate;
+	uint16_t BPM;
+	uint8_t tickRate;
 	char *key;
 } songData;
 
 typedef struct {
-	int tickRate;
-	int readPos;
-	int instrument;
-} channel;
+	uint8_t sustainTick;
+} instrument;
+
+typedef struct {
+	instrument inst;
+	uint8_t envState;
+	uint16_t readPos;
+	uint8_t readRate;
+	double env;
+	double envSlope;
+	double phase;
+    double slope;
+} channel[NUM_CHANNELS];
 
 songData struct_makeSong();
 

@@ -6,7 +6,7 @@
 int main(int argc, char *argv[])
 {
 
-	int freq = 48000;
+	uint16_t freq = 48000;
 	FILE *path;
 
 	songData testSong = struct_makeSong();
