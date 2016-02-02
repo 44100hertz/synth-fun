@@ -3,12 +3,11 @@
 #include <stdint.h>
 #include "output.h"
 
-// Turns a wave into a short, clipping out-of-range values
+// Turns a wave into a short
 static
 int16_t output_quantize(double wave)
 {
-	return (int16_t)
-		(fmax( fmin( wave, 1.0 ), 0 ) * 0xffff - 0x8000);
+	return (int16_t) wave - 0x7fff;
 }
 
 void output_fileS16(double wave, FILE *path)

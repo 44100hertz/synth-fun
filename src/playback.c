@@ -9,12 +9,12 @@
 double sampleUpdate(channel chan);
 void tickUpdate(channel chan);
 
-int playback(int sampleRate, songData song, FILE *path)
+int playback(int sampleRate, FILE *readPath, FILE *path)
 {
 	channel chan;
+        songData song = struct_makeSong();
 	double envSlope = 0xffff / (double)song.tickRate;
-	uint32_t tick = 0;
-	uint32_t nextTick = 0;
+	uint32_t tick = 0; uint32_t nextTick = 0;
 	uint32_t timer = 0;
 	while(1) {
 		tick = nextTick;
@@ -32,9 +32,9 @@ double sampleUpdate(channel chan) {
 	uint8_t i;
 	double mix;
 	for(i=0; i<NUM_CHANNELS; i++) {
-		if(chan[i].readRate > 0) {
+		if(chan[i].patRate > 0) {
 			chan[i].phase += chan[i].slope;
-			chan[i].phase = fmod(chan[i].phase, 1.0);
+                        if(chan[i].phase > 0xffff) chan[i].phase -= 0xffff;
 		}
 		mix += chan[i].phase;
 	}
@@ -44,12 +44,6 @@ double sampleUpdate(channel chan) {
 void tickUpdate(channel chan) {
 	uint8_t i;
 	for(i=0; i<NUM_CHANNELS; i++) {
-		if(chan[i].envState != KEY_STOP) {
-			chan[i].env += chan[i].envSlope;
-		}
-		if(chan[i].envState == KEY_ON && chan[i].env >= chan[i].inst.sustainTick ||
-		   chan[i].env >= 1) {
-			chan[i].envState = KEY_STOP;
-		}
+                // FIXME: update envelope
 	}
 }

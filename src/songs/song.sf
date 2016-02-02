@@ -1,0 +1,12 @@
+// Initialize variables
+init channels=8 bpm=120 tickrate=24
+
+// Set song patterns
+scale 0 "c-4 e-4 g-4 a-4"
+pat 0 "00500!"
+pat 6 "05005!"
+
+// Set channel parameters
+chan 0-7 inst=sine
+chan 0 pat=0
+chan 1 pat=1

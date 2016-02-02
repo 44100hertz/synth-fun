@@ -10,18 +10,13 @@ typedef struct {
 } songData;
 
 typedef struct {
-	uint8_t sustainTick;
-} instrument;
-
-typedef struct {
-	instrument inst;
 	uint8_t envState;
-	uint16_t readPos;
-	uint8_t readRate;
+	uint16_t pat;
+	uint8_t patRate;
 	uint16_t env;
 	double envSlope;
-	uint16_t phase;
-    double slope;
+        double phase;
+        double slope;
 } channel[NUM_CHANNELS];
 
 songData struct_makeSong();

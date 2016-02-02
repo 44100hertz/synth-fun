@@ -38,27 +38,24 @@ static const uint16_t sineLUT[256] =
         0x7fdc, 0x7fe5, 0x7fec, 0x7ff3, 0x7ff7, 0x7ffb, 0x7ffe, 0x7fff
 };
 
-uint16_t gen_sine(uint16_t phase, uint8_t type)
+/* Makes a sine wave using a LUT of the first quarter of a sine wave */
+uint16_t gen_sine(uint16_t fullPhase, uint8_t type)
 {
-        uint16_t intPosition = phase * 256 * 4;
-        uint16_t posLUT = intPosition % 256;
-
-        if(intPosition % 512 > 255)
-                posLUT ^= 0x00ff;
-
-        uint16_t topHalf = sineLUT[posLUT];
-
-        if(intPosition > 512) {
-                topHalf = 0x8000 - topHalf;
-                return topHalf;
+        /* reduce phase's range to 0x400 */
+        uint16_t phase = fullPhase / 0x40;
+        /* each quadrant is 0x100 */
+        uint16_t index = phase % 0x100;
+        /* in even quadrants, flip horizontally */
+        if(phase % 512 > 255) {
+                index = 0x100 - index;
+        }
+        uint16_t topHalf = sineLUT[index];
+        /* in the second half of the wave, flip vertically */
+        if(phase > 512) {
+                return 0x8000 - topHalf;
         } else {
                 return topHalf + 0x7fff;
         }
-}
-
-uint16_t gen_preciseSine(uint16_t phase)
-{
-        return sin(phase * M_PI * 2.0) * 0xffff + 0x7fff;
 }
 
 // Square wave w/aliasing.
@@ -76,10 +73,4 @@ uint16_t gen_triangle(uint16_t phase)
                 return phase * 2;
         else
                 return (0xffff - phase) * 2;
-}
-
-// Used for envelopes
-uint16_t gen_1poly(uint16_t phase, double a, double power)
-{
-	return (uint16_t)pow((0xffff - phase) / (double)0xffff, power) * a * 0xffff;
 }

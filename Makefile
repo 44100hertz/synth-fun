@@ -1,3 +1,5 @@
+CFLAGS=-Wall -g
+
 default: bin/song
 
 ./bin/song: src/*.c src/*.h

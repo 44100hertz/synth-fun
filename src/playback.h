@@ -1,1 +1,1 @@
-int playback(int sampleRate, songData song, FILE *path);
+int playback(int sampleRate, FILE *readPath, FILE *writePath);
